@@ -1,17 +1,20 @@
 class ChessPiece:
-    def __init__(self, name, symbol):
+    def __init__(self, name, symbol, fen):
         self.name = name
         self.symbol = symbol
+        self.fen = fen
 
-WHITE_KING = ChessPiece("WHITE_KING", "♔")
-WHITE_QUEEN = ChessPiece("WHITE_QUEEN", "♕")
-WHITE_ROOK = ChessPiece("WHITE_ROOK", "♖")
-WHITE_BISHOP = ChessPiece("WHITE_BISHOP", "♗")
-WHITE_KNIGHT = ChessPiece("WHITE_KNIGHT", "♘")
-WHITE_PAWN = ChessPiece("WHITE_PAWN", "♙")
-BLACK_KING = ChessPiece("BLACK_KING", "♚")
-BLACK_QUEEN = ChessPiece("BLACK_QUEEN", "♛")
-BLACK_ROOK = ChessPiece("BLACK_ROOK", "♜")
-BLACK_BISHOP = ChessPiece("BLACK_BISHOP", "♝")
-BLACK_KNIGHT = ChessPiece("BLACK_KNIGHT", "♞")
-BLACK_PAWN = ChessPiece("BLACK_PAWN", "♟")
+chess_pieces = {
+    "K": ChessPiece("WHITE_KING", "♔", "K"),
+    "Q": ChessPiece("WHITE_QUEEN", "♕", "Q"),
+    "R": ChessPiece("WHITE_ROOK", "♖", "R"),
+    "B": ChessPiece("WHITE_BISHOP", "♗", "B"),
+    "N": ChessPiece("WHITE_KNIGHT", "♘", "N"),
+    "P": ChessPiece("WHITE_PAWN", "♙", "P"),
+    "k": ChessPiece("BLACK_KING", "♚", "k"),
+    "q": ChessPiece("BLACK_QUEEN", "♛", "q"),
+    "r": ChessPiece("BLACK_ROOK", "♜", "r"),
+    "b": ChessPiece("BLACK_BISHOP", "♝", "b"),
+    "n": ChessPiece("BLACK_KNIGHT", "♞", "n"),
+    "p": ChessPiece("BLACK_PAWN", "♟", "p")
+}

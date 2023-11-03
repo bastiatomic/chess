@@ -11,6 +11,10 @@ clock = pygame.time.Clock()
 running = True
 
 # CLASSES
+class Board:
+    background_color = (189, 189, 189)
+    selected_node = None; target_node = None
+
 class Node:
     def __init__(self,x,y,isWhite,id):
         self.rect = pygame.Rect(x,y,50,50)
@@ -21,11 +25,27 @@ class Node:
         self.id = id
 
 # METHODS
-def create_layout(node_list, layout):
+def create_fen_layout(node_list, layout):
+    index = 0
+    for char in layout:
+        if char.isalpha():
+            node_list[index].name = char
+            node_list[index].symbol = Pieces.chess_pieces[char].symbol
+            index += 1
+
+        if char.isdigit():
+            index += int(char)
+
+        if char == "/":
+            index =  (index - index%8)
+        
+        if char == " ":
+            break
+
     return node_list
 
 def draw(node_list):
-    screen.fill((189	,189,	189))
+    screen.fill(BOARD.background_color)
 
     for a in node_list:
         pygame.draw.rect(screen, a.color, a.rect, 0, 5)
@@ -36,6 +56,7 @@ def draw(node_list):
     pygame.display.flip()
     
 # GAME SETUP
+BOARD = Board()
 node_list = []
 BASE_LAYOUT = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 index = 0
@@ -46,8 +67,7 @@ for i in range(8):
         node_list.append(Node(5 + j*55,5 +  i*55 , isWhite, index))
         index += 1
 
-node_list = create_layout(node_list, BASE_LAYOUT)
-#node_list[0].symbol = Pieces.BLACK_ROOK.symbol; node_list[0].name = Pieces.BLACK_ROOK.name
+node_list = create_fen_layout(node_list, BASE_LAYOUT)
 
 # GAME LOOP
 draw(node_list)
